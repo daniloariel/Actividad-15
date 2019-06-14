@@ -30,7 +30,7 @@ public class MinHeap{
 	public Edge removeMin(){
 		if(heap.size() == 1){
 			Edge min = heap.get(0);
-			array[0]=null;
+			heap.set(0,null);
 			return min;
 		}else{
 			if(heap.size()>1){ //intercambio el ultimo con el primero, hago heapify
