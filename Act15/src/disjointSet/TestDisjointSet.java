@@ -27,9 +27,7 @@ int cantNodos = 10;
 		Ds.union(2,0);
 		Ds.union(2, 7);
 		Ds.union(6, 9);
-		
-		System.out.println(Ds.findSet(9).getValue());
-		
+	
 		
 		//System.out.println(Ds.toString());
 
