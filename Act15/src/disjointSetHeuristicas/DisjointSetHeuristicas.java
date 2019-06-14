@@ -1,19 +1,19 @@
-package DisjointSet;
+package disjointSetHeuristicas;
 
 import java.util.LinkedList;
 
-public class DisjointSet {
+public class DisjointSetHeuristicas {
 	
-	private LinkedList<DNode> sets;
-	private DNode[] allNodes;
+	private LinkedList<Nodo> sets;
+	private Nodo[] allNodes;
 	
-	public DisjointSet(int cantNodos) {
-		sets = new LinkedList<DNode>();
-		allNodes = new DNode[cantNodos];
+	public DisjointSetHeuristicas(int cantNodos) {
+		sets = new LinkedList<Nodo>();
+		allNodes = new Nodo[cantNodos];
 	}
 	
-	public DNode makeSet(int n) {
-		DNode root = new DNode(n);
+	public Nodo makeSet(int n) {
+		Nodo root = new Nodo(n);
 		root.setPadre(root);
 		
 		sets.addFirst(root);
@@ -23,8 +23,8 @@ public class DisjointSet {
 	}
 	
 	public void union(int x, int y) {
-		DNode xRoot = findSet(x);
-		DNode yRoot = findSet(y);
+		Nodo xRoot = findSet(x);
+		Nodo yRoot = findSet(y);
 		if(xRoot != yRoot) {
 			if(xRoot.getRank() > yRoot.getRank()) 
 				yRoot.setPadre(xRoot);			    
@@ -37,10 +37,10 @@ public class DisjointSet {
 		}
 	}
 	
-	public DNode findSet(int n) {  //Si no encontro el objeto devuelve nulo
+	public Nodo findSet(int n) {  //Si no encontro el objeto devuelve nulo
 		
-		DNode nodo = allNodes[n];  
-		DNode root = null;
+		Nodo nodo = allNodes[n];  
+		Nodo root = null;
 		if(nodo!=null)
 			root = pathCompress(nodo);
 		
@@ -48,7 +48,7 @@ public class DisjointSet {
 	}
 	
 	
-	private DNode pathCompress(DNode nodo) {
+	private Nodo pathCompress(Nodo nodo) {
 		
 		if(nodo != nodo.getPadre())
 			nodo.setPadre(pathCompress(nodo.getPadre()));
@@ -56,13 +56,13 @@ public class DisjointSet {
 		return nodo.getPadre();	
 	}
 	
-	public LinkedList<DNode> getSets(){
+	public LinkedList<Nodo> getSets(){
 		return sets;
 	}
 	
 	public String toString() {
 		String ret="";
-		for(DNode n : sets) {			
+		for(Nodo n : sets) {			
 			ret+="{"+n.getValue()+", ("+n.getRank()+") -> padre: "+n.getPadre().getValue()+"}\n ";
 		}
 		return ret;

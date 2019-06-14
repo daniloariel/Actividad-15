@@ -1,12 +1,12 @@
-package DisjointSet;
+package disjointSetHeuristicas;
 
-public class DNode {
+public class Nodo {
 	
-	private DNode padre;
+	private Nodo padre;
 	private int rank;
 	private int value;
 	
-	public DNode(int value) {
+	public Nodo(int value) {
 		this.value = value;
 		rank = 0;
 	}
@@ -23,11 +23,11 @@ public class DNode {
 		return value;
 	}
 	
-	public DNode getPadre() {
+	public Nodo getPadre() {
 		return padre;
 	}
 	
-	public void setPadre(DNode padre) {
+	public void setPadre(Nodo padre) {
 		this.padre = padre;
 	}
 }
