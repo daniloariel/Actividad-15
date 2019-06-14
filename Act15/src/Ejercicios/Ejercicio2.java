@@ -32,7 +32,7 @@ public class Ejercicio2{
 		Edge [] resultado = new Edge[izquierda.length + derecha.length]
 		while(izquierda.length>0 && derecha.length>0){
 			if(izquierda[i].getPeso()<=derecha[i].getPeso()){
-				//ME DA TANTA PAJA ESTE ALGORITMO, despues lo terminamos
+				//ME DA TANTA PAJA ESTE ALGORITMO.
 			}
 		}
 
@@ -67,7 +67,7 @@ public class Ejercicio2{
 
 		}while(i<grafo.cantArcos() && solucion.size()==grafo.cantNodos()-1);
 
-		return sol;
+		return solucion;
 	}
 
 	/*
