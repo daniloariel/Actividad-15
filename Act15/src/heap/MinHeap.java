@@ -1,5 +1,7 @@
 package heap;
 
+import java.util.ArrayList;
+
 import Graph.Edge;
 
 
@@ -21,7 +23,7 @@ public class MinHeap{
 	}
 
 	public Edge min(){
-		if(heap.size>0)
+		if(heap.size()>0)
 			return heap.get(0);
 		else
 			return null;
