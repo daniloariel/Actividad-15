@@ -1,15 +1,13 @@
 package heap;
 
 import java.util.ArrayList;
-
 import Graph.Edge;
 
+public class MinHeap<E> implements Heap<E>{
 
-public class MinHeap{
+	private ArrayList<E> heap;
 
-	private ArrayList<Edge> heap;
-
-	public MinHeap(ArrayList<Edge> lista){
+	public MinHeap(ArrayList<E> lista){
 		heap= lista;
 		buildHeap();
 	}
@@ -22,21 +20,21 @@ public class MinHeap{
 		return heap.size()==0;
 	}
 
-	public Edge min(){
+	public E min(){
 		if(heap.size()>0)
 			return heap.get(0);
 		else
 			return null;
 	}
 
-	public Edge removeMin(){
+	public E removeMin(){
 		if(heap.size() == 1){
-			Edge min = heap.get(0);
+			E min = heap.get(0);
 			heap.set(0,null);
 			return min;
 		}else{
 			if(heap.size()>1){ //intercambio el ultimo con el primero, hago heapify
-				Edge min = heap.get(0);
+				E min = heap.get(0);
 				heap.set(0, heap.get(heap.size() - 1));
 				heap.remove(heap.size() - 1);
 				heapify(0);
@@ -68,13 +66,18 @@ public class MinHeap{
 	}
 
 	private void swap(int i, int j) {
-        Edge e = heap.get(i);
+        E e = heap.get(i);
         heap.set(i, heap.get(j));
         heap.set(j, e);
     }
 
     public boolean esMenor(int i, int j) {
-        return heap.get(i).getPeso() < heap.get(j).getPeso();
+    	
+        Edge ei = (Edge)heap.get(i);
+        Edge ej = (Edge)heap.get(j);
+        
+        return ei.getPeso()<ej.getPeso();
+        
     }
 
 	private void buildHeap(){

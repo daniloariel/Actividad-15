@@ -1,69 +1,62 @@
 package disjointSetHeuristicas;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
-public class DisjointSetHeuristicas {
+public class DisjointSetHeuristicas implements DisjointSet{
 	
-	private LinkedList<Nodo> sets;
-	private Nodo[] allNodes;
+	private int [] parent;
+	private int [] rank;
 	
-	public DisjointSetHeuristicas(int cantNodos) {
-		sets = new LinkedList<Nodo>();
-		allNodes = new Nodo[cantNodos];
+	
+	public DisjointSetHeuristicas(int cant) {
+		parent = new  int[cant];
+		rank = new int[cant];
 	}
 	
-	public Nodo makeSet(int n) {
-		Nodo root = new Nodo(n);
-		root.setPadre(root);
-		
-		sets.addFirst(root);
-		allNodes[n] = root;
-		
-		return root;
+	public int makeSet(int x) {
+		parent[x]=x;
+		rank[x]=0;
+		return x;
 	}
 	
 	public void union(int x, int y) {
-		Nodo xRoot = findSet(x);
-		Nodo yRoot = findSet(y);
-		if(xRoot != yRoot) {
-			if(xRoot.getRank() > yRoot.getRank()) 
-				yRoot.setPadre(xRoot);			    
-			else {
-				xRoot.setPadre(yRoot);
-				if(xRoot.getRank() == yRoot.getRank()) {
-					yRoot.increaseRank();
-				}
-			}
+		
+		int xRoot = findSet(x);
+		int yRoot = findSet(y);
+		
+		if(xRoot == yRoot) {
+			return; //Se supone que esto no pasa porque no vamos a buscar el mismo elemento en dos conujunto diferentes
 		}
+		if(rank[xRoot] < rank[yRoot])
+			parent[xRoot] = yRoot;
+		
+		else if(rank[xRoot] > rank[yRoot])
+			parent[yRoot] = xRoot;
+		
+		else {
+			parent[yRoot] = xRoot;
+			rank[xRoot] = rank[xRoot]+1;
+		}
+		
 	}
 	
-	public Nodo findSet(int n) {  //Si no encontro el objeto devuelve nulo
+	public int findSet(int x) {
+		if(parent[x]!=x)
+			parent[x] = findSet(parent[x]);
 		
-		Nodo nodo = allNodes[n];  
-		Nodo root = null;
-		if(nodo!=null)
-			root = pathCompress(nodo);
-		
-		return root;
+		return parent[x];
+	}
+
+	public ArrayList<Integer> getSets() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	
-	private Nodo pathCompress(Nodo nodo) {
-		
-		if(nodo != nodo.getPadre())
-			nodo.setPadre(pathCompress(nodo.getPadre()));
-		
-		return nodo.getPadre();	
-	}
-	
-	public LinkedList<Nodo> getSets(){
-		return sets;
-	}
 	
 	public String toString() {
 		String ret="";
-		for(Nodo n : sets) {			
-			ret+="{"+n.getValue()+", ("+n.getRank()+") -> padre: "+n.getPadre().getValue()+"}\n ";
+		for(int i=0; i<parent.length;i++) {			
+			ret+="{"+i+", ("+rank[i]+") -> padre: "+parent[i]+"}\n ";
 		}
 		return ret;
 	}

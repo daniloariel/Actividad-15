@@ -1,6 +1,6 @@
 package Ejercicios;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import Graph.Edge;
 import Graph.Graph;
@@ -19,7 +19,7 @@ public class Ejercicio1 {
 		Edge arco1 = new Edge(nodo1,nodo2,2);
 		Edge arco2 = new Edge(nodo2,nodo3,3);
 		
-		Graph grafo1= new Graph(3,2);
+		Graph grafo1= new Graph();
 		grafo1.addNode(nodo1);
 		grafo1.addNode(nodo2);
 		grafo1.addNode(nodo3);
@@ -29,7 +29,7 @@ public class Ejercicio1 {
 		//Grafo 2: 3 nodos y no conexo
 		Edge arco3= new Edge(nodo1,nodo2,1);
 		
-		Graph grafo2 = new Graph(3,1);
+		Graph grafo2 = new Graph();
 		grafo2.addNode(nodo1);
 		grafo2.addNode(nodo2);
 		grafo2.addNode(nodo3);
@@ -49,7 +49,7 @@ public class Ejercicio1 {
 		Edge arco8= new Edge(nodo4,nodo5,4);
 		Edge arco9= new Edge(nodo6,nodo7,2);
 		
-		Graph grafo3= new Graph(7,6);
+		Graph grafo3= new Graph();
 		grafo3.addNode(nodo1);
 		grafo3.addNode(nodo2);
 		grafo3.addNode(nodo3);
@@ -66,7 +66,7 @@ public class Ejercicio1 {
 		grafo3.addEdge(arco9);
 		
 		//Grafo 4: 7 nodos y conexo
-		Graph grafo4= new Graph(7,8);
+		Graph grafo4= new Graph();
 		grafo4.addNode(nodo1);
 		grafo4.addNode(nodo2);
 		grafo4.addNode(nodo3);
@@ -128,7 +128,7 @@ public class Ejercicio1 {
 	private static boolean visitarBF(Graph grafo, Queue cola) {
 		
 		Node nodo;
-		LinkedList<Node> adyacentes;
+		ArrayList<Node> adyacentes;
 		while(!cola.isEmpty()) {
 			nodo = cola.front();
 			adyacentes = grafo.getAdyacentes(nodo);

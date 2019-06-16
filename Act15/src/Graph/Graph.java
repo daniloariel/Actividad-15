@@ -1,57 +1,49 @@
 package Graph;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
  
 public class Graph {
  
-    private Node [] nodes;
-    private int nodesSize;
-    private Edge [] edges;
-    private int edgesSize;
+    private ArrayList<Node> nodes;
+    private ArrayList<Edge> edges;
     
-    
-    public Graph(int cantNodos, int cantArcos) {
-    	nodes = new Node[cantNodos];
-    	edges = new Edge[cantArcos];
-    	nodesSize = 0;
-    	edgesSize = 0;
+    public Graph() {
+    	nodes = new ArrayList<Node>();
+    	edges = new ArrayList<Edge>();
      }
     
-    public LinkedList<Node> getAdyacentes(Node nodo) {
-    	LinkedList<Node> adyacentes = new LinkedList<Node>();
+    public ArrayList<Node> getAdyacentes(Node nodo) {
+    	ArrayList<Node> adyacentes = new ArrayList<Node>();
     	for(Edge arco : edges) {
     		if(arco.getOrigin() == nodo)
-    			adyacentes.addLast(arco.getDestination());
+    			adyacentes.add(adyacentes.size(),arco.getDestination());
     	}
     	
     	return adyacentes;
     }
     
     public void addNode(Node node) {
-        nodes[nodesSize] = node;
-        nodesSize++;
+        nodes.set(nodes.size(),node);
     }
     
     public void addEdge(Edge edge) {
-       edges[edgesSize] = edge;
-       edgesSize++;
+       edges.set(edges.size(), edge);
     }
  
-    public Edge[] getEdges(){
+    public ArrayList<Edge> getEdges(){
     	return edges;
     }
     
-    public Node[] getNodes() {
+    public ArrayList<Node> getNodes() {
         return nodes;
     }
  
     public int cantNodos() {
-    	return nodes.length;
+    	return nodes.size();
     }
     
     public int cantArcos() {
-    	return edges.length;
+    	return edges.size();
     }
     
     @Override
