@@ -66,7 +66,7 @@ public class Ejercicio2{
 			}
 			i++;
 
-		}while(i<grafo.cantArcos() && solucion.size()==grafo.cantNodos()-1);
+		}while(i<grafo.cantArcos() && solucion.size()<grafo.cantNodos()-1);
 
 		return solucion;
 	}
@@ -99,7 +99,7 @@ public class Ejercicio2{
 				solucion.set(solucion.size(),primero);
 			}
 
-		}while(solucion.size() == grafo.cantNodos()-1);
+		}while(solucion.size() < grafo.cantNodos()-1);
 
 		return solucion;
 	}
@@ -138,7 +138,7 @@ public class Ejercicio2{
 				}
 				i++;
 
-			}while(i<grafo.cantArcos() && solucion.size()==grafo.cantNodos()-1);
+			}while(i<grafo.cantArcos() && solucion.size()<grafo.cantNodos()-1);
 
 			return solucion;
 		}
@@ -171,7 +171,7 @@ public class Ejercicio2{
 					solucion.set(solucion.size(),primero);
 				}
 
-			}while(solucion.size() == grafo.cantNodos()-1);
+			}while(solucion.size() < grafo.cantNodos()-1);
 
 			return solucion;
 		}
