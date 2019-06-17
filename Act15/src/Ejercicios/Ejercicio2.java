@@ -31,8 +31,28 @@ public class Ejercicio2{
 
 		ArrayList<Edge> resultado = new ArrayList<Edge>();
 		
-		//HACER MERGE
-		
+		int i,j = 0;
+
+		while(i<izquierda.size() && j<derecha.size() ){
+
+			if(izquierda.get(i).getPeso() <= derecha.get(j).getPeso() ){
+				resultado.add(izquierda.get(i));
+				i++;
+			}
+			else if(izquierda.get(i) > derecha.get(j)){
+				resultado.add(derecha.get(j));
+				j++;
+			}
+		}
+
+		while(i<izquierda.size()){
+			resultado.add(izquierda.get(i));
+		}
+
+		while(j<derecha.size()){
+			resultado.add(derecha.get(j));
+		}
+
 		return resultado;
 	}
 
