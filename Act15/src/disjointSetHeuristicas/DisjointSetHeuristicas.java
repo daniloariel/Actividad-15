@@ -22,6 +22,7 @@ public class DisjointSetHeuristicas implements DisjointSet{
 		//rank[x]=0;
 		parent.set(x,x);
 		rank.set(x,0);
+		
 		return x;
 	}
 	
